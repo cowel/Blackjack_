@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
  */
 
 public class BlackjackHandPanel extends JPanel implements ActionListener {
-    private static final Color CARD_TABLE_GREEN = new Color(37, 93, 54);
+    private static final Color CARD_TABLE_GREEN = new Color(25,218,87);
     private static final Color TEXT_COLOR = new Color(230, 230, 230);
     private static final Dimension BUTTONS_DIMENSION = new Dimension(110, 25);
     private BlackjackClient controller; // client GUI controller
@@ -63,11 +63,11 @@ public class BlackjackHandPanel extends JPanel implements ActionListener {
         add(handMessageLabel, constraints);
         JPanel hitStandButtonsPanel = new JPanel();
         hitStandButtonsPanel.setBackground(CARD_TABLE_GREEN);
-        hitButton = new JButton("Hit");
+        hitButton = new JButton("Rút bài");
         hitButton.setPreferredSize(BUTTONS_DIMENSION);
         hitButton.setEnabled(false);
         hitButton.setVisible(false);
-        standButton = new JButton("Stand");
+        standButton = new JButton("Dừng");
         standButton.setPreferredSize(BUTTONS_DIMENSION);
         standButton.setEnabled(false);
         standButton.setVisible(false);
@@ -77,11 +77,11 @@ public class BlackjackHandPanel extends JPanel implements ActionListener {
         add(hitStandButtonsPanel, constraints);
         JPanel yesNoButtonsPanel = new JPanel();
         yesNoButtonsPanel.setBackground(CARD_TABLE_GREEN);
-        splitPairsButton = new JButton("Split Pairs");
+        splitPairsButton = new JButton("Tách bài");
         splitPairsButton.setPreferredSize(BUTTONS_DIMENSION);
         splitPairsButton.setEnabled(false);
         splitPairsButton.setVisible(false);
-        doubleDownButton = new JButton("Double Down");
+        doubleDownButton = new JButton("Nhân đôi");
         doubleDownButton.setPreferredSize(BUTTONS_DIMENSION);
         doubleDownButton.setEnabled(false);
         doubleDownButton.setVisible(false);
@@ -119,7 +119,7 @@ public class BlackjackHandPanel extends JPanel implements ActionListener {
      */
 
     public void setHandValueLabel(String handValue) {
-        handValueLabel.setText("Hand Value: " + handValue);
+        handValueLabel.setText("Điểm: " + handValue);
         showChanges();
     }
 
@@ -130,7 +130,7 @@ public class BlackjackHandPanel extends JPanel implements ActionListener {
      */
 
     public void setHandBet(String bet) {
-        handBetLabel.setText("Bet: $" + bet);
+        handBetLabel.setText("Cược: $" + bet);
         showChanges();
     }
 
@@ -278,13 +278,13 @@ public class BlackjackHandPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object target = e.getSource();
         if(target == hitButton) {
-            controller.sendClientMessage(hitButton.getText());
+            controller.sendClientMessage("Hit");
         } else if (target == standButton) {
-            controller.sendClientMessage(standButton.getText());
+            controller.sendClientMessage("Stand");
         } else if (target == splitPairsButton) {
-            controller.sendClientMessage(splitPairsButton.getText());
+            controller.sendClientMessage("Split Pairs");
         } else if (target == doubleDownButton) {
-            controller.sendClientMessage(doubleDownButton.getText());
+            controller.sendClientMessage("Double Down");
         }
         enableHitButton(false);
         enableStandButton(false);

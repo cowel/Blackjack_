@@ -8,7 +8,7 @@ import java.util.concurrent.ExecutionException;
  */
 
 public class BlackjackClient {
-    private static final String DEFAULT_SERVER_ADDRESS = "localhost";   // default server address
+    private static final String DEFAULT_SERVER_ADDRESS = "127.0.0.1";   // default server address
     private static final int DEFAULT_SERVER_PORT = 44444;               // default server port
     private String serverAddress;                                       // server address
     private int serverPort;                                             // server port
@@ -429,6 +429,7 @@ public class BlackjackClient {
                 System.err.println("Options: [-a serverAddress] [-p serverPort]");
                 System.exit(1);
             }
+            System.out.println(i);
             switch (option) {
                 case "-a":
                     serverAddress = argument;

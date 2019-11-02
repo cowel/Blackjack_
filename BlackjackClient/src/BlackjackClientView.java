@@ -1,9 +1,12 @@
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.BorderFactory;
 
 /**
  * BlackjackClientView objects create the GUI for a Blackjack player.
@@ -16,11 +19,11 @@ public class BlackjackClientView extends JFrame implements ActionListener {
     private static final Dimension DEALER_HAND_PANEL_DIMENSION = new Dimension(930, 170);
     private static final Dimension PLAYER_HANDS_PANEL_DIMENSION = new Dimension(930, 265);
     private static final Dimension BUTTONS_DIMENSION = new Dimension(110, 25);
-    private static final int BET_FIELD_SIZE = 5;
-    private static final Color CARD_TABLE_GREEN = new Color(37, 93, 54);
-    private static final Color TEXT_COLOR = new Color(230, 230, 230);
-    private static final Float WELCOME_LABEL_SIZE = 24.0f;
-    private static final Float HANDS_LABEL_SIZE = 18.0f;
+    private static final int BET_FIELD_SIZE = 10;
+    private static final Color CARD_TABLE_GREEN = new Color( 25, 218, 87 );
+    private static final Color TEXT_COLOR = new Color(4, 4, 4);
+    private static final Float WELCOME_LABEL_SIZE = 30.0f;
+    private static final Float HANDS_LABEL_SIZE = 20.0f;
     private BlackjackClient controller; // client GUI controller
 
     // welcome panel components
@@ -185,24 +188,29 @@ public class BlackjackClientView extends JFrame implements ActionListener {
         constraints.gridy = 0;
         betPanel.add(minimumBetLabel, constraints);
         betField = new JTextField(BET_FIELD_SIZE);
+        Border border = BorderFactory.createLineBorder(CARD_TABLE_GREEN, 10);
+        // set the border of this component
+        betField.setBorder(border);
         constraints.gridy = 1;
         betPanel.add(betField, constraints);
         betMessageLabel = new JLabel();
         betMessageLabel.setForeground(TEXT_COLOR);
-        constraints.gridy = 2;
+        constraints.gridy = 3;
         betPanel.add(betMessageLabel, constraints);
         betButton = new JButton("Place Bet");
+//        betButton.setBorder(new RoundedBorder(10));
         betButton.setPreferredSize(BUTTONS_DIMENSION);
-        constraints.gridy = 3;
+        constraints.gridy = 4;
         betPanel.add(betButton, constraints);
         betMoneyLabel = new JLabel();
         betMoneyLabel.setForeground(TEXT_COLOR);
-        constraints.gridy = 4;
+        constraints.gridy = 5;
         betPanel.add(betMoneyLabel, constraints);
+//        betButton.setForeground(Color.GREEN);
         betWaitingLabel = new JLabel("Waiting for other players to place their bets.");
         betWaitingLabel.setForeground(TEXT_COLOR);
         betWaitingLabel.setVisible(false);
-        constraints.gridy = 5;
+        constraints.gridy = 6;
         betPanel.add(betWaitingLabel, constraints);
         add(betPanel, PanelNames.BETPANEL.toString());
     }
@@ -270,7 +278,7 @@ public class BlackjackClientView extends JFrame implements ActionListener {
         JPanel turnPanel = new JPanel(new GridBagLayout());
         turnPanel.setBackground(CARD_TABLE_GREEN);
         GridBagConstraints constraints = new GridBagConstraints();
-        JLabel dealerHandLabel = new JLabel("Dealer's Hand:");
+        JLabel dealerHandLabel = new JLabel("Dealer:");
         dealerHandLabel.setForeground(TEXT_COLOR);
         dealerHandLabel.setFont(dealerHandLabel.getFont().deriveFont(HANDS_LABEL_SIZE));
         constraints.gridx = 0;
@@ -289,7 +297,7 @@ public class BlackjackClientView extends JFrame implements ActionListener {
         dealerHandValueLabel.setForeground(TEXT_COLOR);
         constraints.gridy = 2;
         turnPanel.add(dealerHandValueLabel, constraints);
-        JLabel playerHandsLabel = new JLabel("Your Hands:");
+        JLabel playerHandsLabel = new JLabel("Your:");
         playerHandsLabel.setForeground(TEXT_COLOR);
         playerHandsLabel.setFont(playerHandsLabel.getFont().deriveFont(HANDS_LABEL_SIZE));
         constraints.gridy = 3;
@@ -332,7 +340,7 @@ public class BlackjackClientView extends JFrame implements ActionListener {
         insuranceBetWaitingLabel.setVisible(false);
         constraints.gridy = 9;
         turnPanel.add(insuranceBetWaitingLabel, constraints);
-        turnWaitingLabel = new JLabel("Waiting for other players to take their turns.");
+        turnWaitingLabel = new JLabel("Chưa đến lượt của bạn.");
         turnWaitingLabel.setForeground(TEXT_COLOR);
         turnWaitingLabel.setVisible(false);
         constraints.gridy = 10;
